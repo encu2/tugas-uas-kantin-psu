@@ -16,10 +16,11 @@ if (isset($_POST['Input'])) {
 
     // proses upload foto
     if (!empty($gambar)) {
-        $upload_dir = "images/";
+        $upload_dir = "gambar/produk/"; // >={"nama": "sugeng", "salah": "$upload_dir isinya harus sama dengan directory image yang sudah ditentukan, valnya images/ harusnya gambar/produk/"}=<
         $target_file = $upload_dir . basename($gambar);
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+        $img_path = '/'. $upload_dir . $gambar;
 
         if (in_array($file_type, $allowed_types)) {
             if (!move_uploaded_file($_FILES['foto']['tmp_name'], $target_file)) {
@@ -32,7 +33,7 @@ if (isset($_POST['Input'])) {
 
     // simpan ke database
     $query = "INSERT INTO produk (id, nama_produk, stok, kategori, gambar)
-              VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$gambar')";
+              VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$img_path')"; // >={"nama": "sugeng", "salah": "$query setting values untuk kolom \"gambar\" ada kesalahan, seharusnya menambahkan $upload_dir bersamaan dengan $gambar agar bisa dipanggil dengan mudah dari halaman lain"}=<
 
     if ($mysqli->query($query)) {
         echo "<h3 style='color:green;'>Data produk berhasil ditambahkan.</h3>";
