@@ -1,0 +1,501 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #1a1a2e;
+  background-color: #EEEFE0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #6333ff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+h2 {  
+  text-align: center;
+  padding: 40px;
+}
+
+.nav-btns .btn-outline,
+.nav-btns .btn-primary {
+  margin-left: 1rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #6333ff;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.font-large{
+  font-size: 40px;
+}
+
+
+.btn-outline {
+  background: none;
+  color: #6333ff;
+  border: 2px solid #6333ff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  background-color: #ffffff;
+  margin-top: 90px;
+}
+
+.hero-content {
+  flex: 1 1 400px;
+  max-width: 600px;
+  padding-left: 5%;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: #1e1e4f;
+}
+
+.highlight {
+  background-color: #ffef8f;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.coba {
+  background-color: red;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.free-link {
+  color: #6333ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Hero Image */
+.hero-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Note Section */
+.note {
+  background-color: #fff;
+  border: 2px solid #e5dfff;
+  border-radius: 12px;
+  margin: 2rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-mini {
+  font-weight: bold;
+  color: #6333ff;
+}
+
+.learn-more {
+  margin-left: auto;
+  text-decoration: none;
+  color: #6333ff;
+  font-weight: 500;
+}
+
+/* Grid Tetap 3 Kolom */
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px 15px;
+  padding: 0 24px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.language-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+.language-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(59, 0, 118, 0.3);
+}
+
+.language-card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+/* === Section 1: General Room Selection === */
+.meeting-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 40px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meeting-section h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.meeting-section p {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.room-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.room-card {
+  width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.room-card:hover {
+  transform: scale(1.05);
+}
+
+.room-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.room-card p {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* === Section 2: Detail Large Meeting Room === */
+.large-room-detail {
+  background-color: #fff;
+  padding: 50px 30px;
+  border-top: 1px solid #ddd;
+}
+
+.large-room-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-room-image img {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 50px;
+}
+
+.large-room-text {
+  max-width: 500px;
+}
+
+.large-room-text h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.participants {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.description {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.layout-img {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.budget-btn {
+  background-color: #ffd700;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.budget-btn:hover {
+  background-color: #e5c400;
+}
+
+/* Product Section */
+.product-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+}
+
+.about.btn {
+  margin-top: 1px;
+  background-color: orange;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.product-card {
+  background-color: #fff;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+h3 {
+  margin: 10px 0 5px;
+  font-size: 20px;
+  color: #555;
+}
+
+.product-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+
+.category,
+.color {
+  font-size: 13px;
+  color: #444;
+  margin: 3px 0;
+}
+
+.price {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.discount {
+  color: red;
+  font-weight: bold;
+}
+
+.old {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.rating {
+  font-size: 14px;
+  color: #444;
+}
+
+/* foooter */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+.footer {
+  background-color: #0d1440;
+  color: #ffffff;
+  padding: 40px 20px;
+  margin-top: 150px;
+}
+
+
+.subscribe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.subscribe h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.subscribe-form {
+  display: flex;
+  border-bottom: 1px solid #ffffff;
+}
+
+.subscribe-form input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.subscribe-form button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #2e3c6b;
+  margin: 30px 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.footer-box {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-box h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-box ul li {
+  margin-bottom: 10px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.footer-box p {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
