@@ -59,15 +59,15 @@
         <p class="font mid">Kami memiliki pilihan solusi ruang meeting interaktif yang disesuaikan dengan kebutuhan ruangan meeting Anda.</p>
     </header>
     <section class="language-grid">
-        <div class="language-card">
+        <div class="language-card" data-kategori="snack">
             <img src="https://img.freepik.com/free-vector/organic-flat-bakso-bowl_23-2148945855.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740" alt="Small Meeting Room">
             <h2>Makanan</h2>
         </div>
-        <div class="language-card">
+        <div class="language-card" data-kategori="minuman">
             <img src="https://img.freepik.com/free-vector/hand-drawn-bubble-tea-flavors-set_23-2148656846.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740" alt="Medium Meeting Room">
             <h2>Minuman</h2>
         </div>
-        <div class="language-card">
+        <div class="language-card" data-kategori="es-cream">
             <img src="https://img.freepik.com/free-vector/realistic-ice-cream-collection_52683-64217.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740" alt="Large Meeting Room">
             <h2>Es Cream</h2>
         </div>
@@ -115,5 +115,47 @@
             </div>
         </div>
     </footer>
+
+<script>
+    (async()=>{
+  const host = window.location.host;
+  const proto = window.location.protocol;
+  const path = window.location.pathname;
+  
+  const toHtml = async(str) => {
+    const parser = new DOMParser();
+    const parsing = parser.parseFromString(str, 'text/html');
+    
+    return parsing.querySelector('.product-card')
+  };
+  const requestJob = async(cat) => {
+    const form = new FormData();
+    form.append('kategori', cat);
+
+    const getProduct = await fetch(`${proto}//${host}${path}display.php`,{
+      "method": "POST",
+      "body": cat == null || cat == undefined ? '' : form
+    });
+    
+    return getProduct.text()
+  };
+  const getCat = (el) => {
+    return el.dataset.kategori
+  }
+  const resetProduct = async() => {
+    document.querySelectorAll('.product-grid > *').forEach(el => {
+      el.remove();
+    });
+  }
+//   document.querySelector('.product-grid').appendChild(await toHtml())
+  for(const i of document.querySelectorAll('.language-grid > div')){
+    i.onclick = async()=>{
+      const stepGetHtml = await requestJob(getCat(i));
+      await resetProduct();
+      document.querySelector('.product-grid').appendChild(await toHtml(await stepGetHtml));
+    }
+  }
+})()
+</script>
 </body>
 </html>
