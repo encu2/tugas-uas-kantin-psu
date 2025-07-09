@@ -8,6 +8,7 @@ if (isset($_POST['Input'])) {
     $stok = intval($_POST['stok']);
     $kategori = addslashes(strip_tags($_POST['kategori']));
     $gambar = $_FILES['foto']['name'];
+    $harga = intval($_POST['harga']);
 
     // validasi panjang ID (opsional, bisa Anda sesuaikan)
     if (strlen($id) > 128) {
@@ -19,7 +20,7 @@ if (isset($_POST['Input'])) {
         $upload_dir = "gambar/produk/"; // >={"nama": "sugeng", "salah": "$upload_dir isinya harus sama dengan directory image yang sudah ditentukan, valnya images/ harusnya gambar/produk/"}=<
         $target_file = $upload_dir . basename($gambar);
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowed_types = ['jpg', 'jpeg', 'png', 'avif'];
         $img_path = '/'. $upload_dir . $gambar;
 
         if (in_array($file_type, $allowed_types)) {
@@ -32,8 +33,8 @@ if (isset($_POST['Input'])) {
     }
 
     // simpan ke database
-    $query = "INSERT INTO produk (id, nama_produk, stok, kategori, gambar)
-              VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$img_path')"; // >={"nama": "sugeng", "salah": "$query setting values untuk kolom \"gambar\" ada kesalahan, seharusnya menambahkan $upload_dir bersamaan dengan $gambar agar bisa dipanggil dengan mudah dari halaman lain"}=<
+    $query = "INSERT INTO produk (id, nama_produk, stok, kategori,harga, gambar)
+              VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$harga','$img_path')"; // >={"nama": "sugeng", "salah": "$query setting values untuk kolom \"gambar\" ada kesalahan, seharusnya menambahkan $upload_dir bersamaan dengan $gambar agar bisa dipanggil dengan mudah dari halaman lain"}=<
 
     if ($mysqli->query($query)) {
         echo "<h3 style='color:green;'>Data produk berhasil ditambahkan.</h3>";
@@ -62,7 +63,16 @@ if (isset($_POST['Input'])) {
             </tr>
             <tr>
                 <td>Kategori</td>
-                <td>: <input type="text" name="kategori" maxlength="256" required></td>
+                <td>: <select name="kategori" id="kategori-produk" required>
+                    <option value="">pilih kategori produk</option>
+                    <option value="makanan">makanan</option>
+                    <option value="minuman">minuman</option>
+                    <option value="es-cream">es cream</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>harga</td>
+                <td>: <input type="text" name="harga" min="0" required></td>
             </tr>
             <tr>
                 <td>Gambar</td>
