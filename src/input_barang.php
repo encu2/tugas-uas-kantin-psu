@@ -21,11 +21,7 @@ if (isset($_POST['Input'])) {
         $upload_dir = "gambar/produk/"; // >={"nama": "sugeng", "salah": "$upload_dir isinya harus sama dengan directory image yang sudah ditentukan, valnya images/ harusnya gambar/produk/"}=<
         $target_file = $upload_dir . basename($gambar);
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-<<<<<<< HEAD
-        $allowed_types = ['jpg', 'jpeg', 'png', 'avif'];
-=======
         $allowed_types = ['jpg', 'jpeg', 'png', 'gif', 'avif'];
->>>>>>> bbf04c9 (update)
         $img_path = '/'. $upload_dir . $gambar;
 
         if (in_array($file_type, $allowed_types)) {
@@ -38,12 +34,7 @@ if (isset($_POST['Input'])) {
     }
 
     // simpan ke database
-<<<<<<< HEAD
-    $query = "INSERT INTO produk (id, nama_produk, stok, kategori,harga, gambar)
-              VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$harga','$img_path')"; // >={"nama": "sugeng", "salah": "$query setting values untuk kolom \"gambar\" ada kesalahan, seharusnya menambahkan $upload_dir bersamaan dengan $gambar agar bisa dipanggil dengan mudah dari halaman lain"}=<
-=======
     $query = "INSERT INTO produk (id, nama_produk, stok, kategori, harga, gambar) VALUES ('$id', '$nama_produk', '$stok', '$kategori', '$harga', '$img_path')"; // >={"nama": "sugeng", "salah": "$query setting values untuk kolom \"gambar\" ada kesalahan, seharusnya menambahkan $upload_dir bersamaan dengan $gambar agar bisa dipanggil dengan mudah dari halaman lain"}=<
->>>>>>> bbf04c9 (update)
 
     if ($mysqli->query($query)) {
         echo "<h3 style='color:green;'>Data produk berhasil ditambahkan.</h3>";
@@ -80,16 +71,19 @@ if (isset($_POST['Input'])) {
                 </select></td>
             </tr>
             <tr>
-                <td>harga</td>
+                <td>Harga</td>
                 <td>: <input type="text" name="harga" min="0" required></td>
             </tr>
             <tr>
-                <td>Harga</td>
-                <td>: <input type="number" name="harga" min="0" required></td>
+                <td>Gambar</td>
+                <td>: <input id="inputGambar" type="file" name="foto" accept="image/*"></td>
             </tr>
             <tr>
-                <td>Gambar</td>
-                <td>: <input type="file" name="foto" accept="image/*"></td>
+                <td colspan="2">
+                    <div style="width: 300px;height: 300px;border: 1px solid #c1c1c1;border-radius: 10px;text-align: center;">
+                        <img id="liatGambar" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAQ4AQMAAADW3v7MAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAAClSURBVBgZ7cExAQAAAMIg+6deCU9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwFPd4AAWy5UVsAAAAASUVORK5CYII=" style="max-width: 100%;object-fit: contain;max-height: 100%;">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -100,3 +94,13 @@ if (isset($_POST['Input'])) {
         </table>
     </form>
 </div>
+<script>
+    inputGambar.oninput = async(ev) => {
+        const reader = new FileReader();
+
+        reader.onload = async(evR)=>{
+            liatGambar.src = evR.target.result;
+        }
+        reader.readAsDataURL(ev.target.files[0]);
+    };
+</script>
