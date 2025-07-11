@@ -231,10 +231,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
     </div>    
 </body>
 <?php } else if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $kategoriApa = empty($_POST['kategori']) == true ? 'snack' : $_POST['kategori'];
-            var_dump($_POST['kategori']);
+            $kategoriApa = empty($_POST['kategori']) == true ? 'makanan' : $_POST['kategori'];
             $query = "SELECT * FROM produk WHERE kategori = '$kategoriApa'";
             $sql = $mysqli->query($query);
+
             while ($hasil =  $sql->fetch_array(MYSQLI_ASSOC)) {
                 $nama_produk = stripslashes($hasil['nama_produk']);
                 $stok = $hasil['stok'];
@@ -248,7 +248,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
                     <p class="product-title"><?= $nama_produk ?></p>
                     <p class="price"><?= $harga ?></p>
                     <p class="stok">Stok: <?= $stok ?></p>
-                    <a href="#" class="order btn">Order Now</a>
+                    <a href="#formSec" class="order btn">Order Now</a>
                 </div>
     <?php 
     }

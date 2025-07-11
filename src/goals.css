@@ -95,6 +95,10 @@ h2 {
   padding: 3rem 2rem;
   background-color: #ffffff;
   margin-top: 90px;
+  background-image: url('/gambar/assets/imgHero.png');
+  min-height: 80dvh;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -403,8 +407,9 @@ h2 {
 
 .product-card img {
   width: 100%;
-  height: auto;
+  height: 200px;
   border-radius: 4px;
+  object-fit: contain;
 }
 
 h3 {

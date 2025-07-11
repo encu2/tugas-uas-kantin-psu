@@ -30,27 +30,27 @@
     </header>
     <main class="hero">
         <div class="hero-content">
-            <h1>Get <span class="highlight">really</span> good at programming. </h1>
-            <p> Develop fluency in <strong>76 <span class="coba">programming</span> languages </strong> with our unique blend of learning, practice and mentoring. Exercism is fun, effective and <a href="#" class="free-link">100% free, forever.</a>
+            <h1>Universitas Panca Sakti Bekasi!</h1>
+            <p>Selamat datang di Universitas Panca Sakti Bekasi! Tempat kuliah yang nggak cuma ngajarin teori, tapi juga siap bantu kamu tumbuh jadi pribadi yang keren, cerdas, dan siap bersaing
             </p>
             <div class="hero-buttons">
                 <button class="btn-primary">Menu kantin</button>
             </div>
         </div>
         <div class="hero-image">
-            <img src="https://ouch-prod-var-cdn.icons8.com/oq/illustrations/thumbs/4eicxGtL7FNpT5Tp.webp " width="400px" height="400px" alt="People coding">
         </div>
     </main>
     <section class="large-room-detail">
         <div class="large-room-content">
             <div class="large-room-image">
-                <img src="https://img.freepik.com/free-photo/traditional-nasi-lemak-meal-composition_23-2149056822.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740" alt="Large Room Detail">
+                <img alt="Large Room Detail" src="/gambar/assets/gambarKantin.png">
             </div>
             <div class="large-room-text">
-                <h4 class="font-large">Large Meeting Room</h4>
-                <p class="participants"> 12–20 participant | 8m x 10m meeting room size </p>
-                <p class="description"> Ruang pertemuan besar dirancang dengan menyesuaikan jumlah peserta yang lebih banyak, dilengkapi 2 (dua) display untuk kenyamanan tampilan presentasi dan video konferensi untuk menciptakan pertemuan yang efisien dan kolaboratif. </p>
-                <button class="budget-btn">Budget Est.›</button>
+                <h4 class="font-large" style="margin-bottom: 15px;line-height: 50px;">kantin universitas panca sakti</h4>
+                
+                <p class="description">selamat datang di Kantin Universitas Panca Sakti Bekasi!
+Lebih dari sekadar tempat makan, kantin ini adalah ruang berkumpulnya ide, tawa, dan energi mahasiswa yang dinamis. Terletak di jantung kampus, kami hadir untuk mendukung semangat belajar dengan menyajikan berbagai pilihan makanan dan minuman yang lezat, higienis, dan terjangkau.</p>
+                
             </div>
         </div>
     </section>
@@ -59,7 +59,7 @@
         <p class="font mid">Kami memiliki pilihan solusi ruang meeting interaktif yang disesuaikan dengan kebutuhan ruangan meeting Anda.</p>
     </header>
     <section class="language-grid">
-        <div class="language-card" data-kategori="snack">
+        <div class="language-card" data-kategori="makanan">
             <img src="https://img.freepik.com/free-vector/organic-flat-bakso-bowl_23-2148945855.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740" alt="Small Meeting Room">
             <h2>Makanan</h2>
         </div>
@@ -75,17 +75,277 @@
     <!-- bagian macam menu dan harga -->
     <div class="product-grid">
         <!-- Produk 1 -->
-        <div class="product-card">
-            <img src="https://img.freepik.com/free-photo/traditional-nasi-lemak-meal-composition_23-2149056822.jpg?ga=GA1.1.137924576.1750945670&amp;semt=ais_items_boosted&amp;w=740">
-            <h3>MAKANAN</h3>
-            <p class="product-title"> GAZELLE HOME KIDS' INFANTS SNEAKERS - LUCID PINK </p>
-            <p class="price">30.000 </p>
-            <p class="stok">Stok: 33</p>
-            <a href="#" class="order btn">Order Now</a>
-        </div>
         <!-- Produk 2 -->
         <!-- Produk 3 -->
         <!-- Produk 4 -->
+    </div>
+    <div>
+        <style>
+          /* hide WA float just in this page */
+.floated{
+    display: none !important;   
+}
+.spaceAfter {
+  --hRel: 50px;
+  position: relative;
+}
+.spaceAfter::after {
+  --between: var(--hRel) * 2.5;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: calc(var(--between));
+  background: url('https://www.mandiriarthasolusi.co.id/wp-content/uploads/2024/03/ornament-space-between.png');
+  z-index: -1;
+}
+/* user box start */
+.userBox {
+  --hb: 180px;
+  --pb: 10px;
+  --hi: 0;
+  padding: var(--pb);
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  height: calc(var(--hb) + var(--pb));
+  border: solid 1px #dfdfdf;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.userBox>.typeChoices {
+  width: 20px;
+  position: absolute;
+  z-index: -1;
+}
+.userBox>.clickChoices {
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-color: #9f9f9f #dfdfdf;
+  height: var(--hb);
+}
+.userBox>.clickChoices>:nth-child(n) {
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.selType {
+  &>.selPoint {
+    display: grid;
+    grid-template-columns: auto;
+    &>input {
+      font-size: clamp(var(--min), var(--val), var(--max));
+      height: 55px;
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    &.open:after,
+    &.none:after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #000;
+      border-bottom: 2px solid #000;
+      grid-column: 1/2;
+      grid-row: 1/2;
+      justify-self: right;
+      align-self: center;
+      margin-right: 15px;
+      rotate: 225deg;
+      transition: rotate .5s;
+    }
+    &.none:after {
+      rotate: 45deg;
+    }
+  }
+}
+/* user box end */
+    /* form container start */
+.formUser {
+  container: formWa / inline-size;
+}
+.formUser>.boxed {
+  --boxPadLR: 0;
+  padding: 40px var(--boxPadLR);
+}
+.formUser>.boxed>:where(.formTitle,
+.formTxt) {
+  text-align: center;
+}
+.formUser>.boxed>.formTitle {
+  --max: 48px;
+  --val: 4vw;
+  --min: 30px;
+  font-size: clamp(var(--min), var(--val) + 8px, var(--max));
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+.formUser>.boxed>.formTxt {
+  margin-bottom: 60px;
+}
+.formUser #formSec {
+  background-color: #F5F5F5;
+  padding: 60px 70px 120px;
+  border-radius: 40px;
+  overflow: hidden;
+  isolation: isolate;
+  scroll-margin-top: 270px;
+  
+  &.spaceAfter:after {
+    --hRel: 60px;
+    left: 0;
+    height: var(--hRel);
+    bottom: 0;
+  }
+}
+.formUser #formSec>form {
+  --min: 16px;
+  --val: 1.5vw;
+  --max: 20px;
+  --gap : 45px;
+  display: grid;
+  grid-template-columns: repeat(2, calc(50% - (var(--gap) / 2)));
+  column-gap: var(--gap);
+  row-gap: 25px;
+  &>:nth-child(odd) {
+    grid-column: 1/2;
+  }
+  &>:nth-child(even) {
+    grid-column: 2/3;
+  }
+  &>.user {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+  }
+  &>.user:has(>#produk) {
+    grid-column: 1/3;
+  }
+  &>.user>label:after {
+    content: " *";
+    color: red;
+  }
+  &>.user>input {
+    height: 55px;
+  }
+  &>.user>textarea {
+    width: 100%;
+    height: 138px;
+  }
+  &>.user.selType {
+    position: relative;
+    &>input {
+      cursor: default;
+    }
+  }
+  &>.user>:is(input,
+  textarea),
+  .selType input {
+    --max: 16px;
+    --min: 14px;
+    border-radius: 10px;
+    padding: 16px 23px;
+    color: #444;
+    font-family: "Albert Sans", sans-serif;
+    font-weight: 500;
+    border: 1px solid #EAEBEC;
+    box-shadow: 4px 4px 10px #0000000a;
+    &:placeholder-shown {
+      padding: 16px 23px;
+      color: #C1C1C1;
+    }
+    &:invalid {
+      border-color: red;
+    }
+  }
+  &>.user input:not(#email) {
+    text-transform: capitalize;
+  }
+  &>.user input#email {
+    text-transform: lowercase;
+  }
+  &>#send {
+    grid-column: 1/2;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #FBCD17;
+    padding: 13px 17px;
+    width: min(50%, 219px);
+    border-radius: 5px;
+    cursor: pointer;
+    &:before {
+      content: "Kirim Pesan";
+    }
+    &:after {
+      content: "\203A";
+      padding-left: 10px;
+    }
+  }
+  &>.note {
+    grid-column: 1/3;
+    font-size: 16px;
+    color: #C1C1C1;
+  }
+}
+  /* custom form start */
+.formUser {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  >.boxed{
+    max-width: 1100px;
+  }
+}
+  /* custom form end */
+  /* form container end */
+@container(width < 1024px) {
+/*     Static Template - General All Page Template Start */
+  & .userBox>.typeChoices {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  & .formUser>.boxed {
+    --boxPadLR: 10px;
+  }
+  & .formUser > .boxed > .formTitle {
+    --max: 48px;
+    --val: 4vw;
+    --min: 30px;
+    font-size: clamp(var(--min), var(--val) + 8px, var(--max));
+  }
+  & .formUser #formSec {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  & .formUser #formSec > form {
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: unset;
+  }
+  & .formUser #formSec > form > :is(.user,
+  div) {
+    --max: 22px;
+    --val: 3vw;
+    --min: 18px;
+    grid-column: 1 / 2;
+  }
+  & .formUser #formSec > form > .user > :where(input,
+  .selPoint,
+  textarea) {
+    margin-top: 10px;
+  }
+  & .formUser #formSec > form > #send {
+    width: max-content;
+  }
+/*     Static Template - General All Page Template end */
+}</style><div class="row formUser"><div class="boxed dynTxt"><div class="formTitle">Request Pesanan</div><div class="formTxt">Terhubung dengan kami untuk mendapatkan penawaran terbaik dari solusi kami.</div><div id="formSec" class="spaceAfter"><form class="dynTxt"><div class="user">
+<label for="nama">Nama</label>
+<input id="nama" type="text" placeholder="Isikan nama lengkap Anda" data-gtm-form-interact-field-id="0"></div><div class="user">
+<label for="prodi">Prodi</label>
+<input type="text" id="prodi" placeholder="Isikan Prodi Anda"></div><div class="user" style="grid-column: 1/-1;">
+<label for="pesanan">Daftar Pesanan</label><textarea type="text" id="pesanan" placeholder="Isikan Daftar Pesanan Anda"></textarea></div><div id="send"></div></form></div></div></div>
     </div>
     <footer class="footer">
         <div class="subscribe">
@@ -116,7 +376,7 @@
         </div>
     </footer>
 
-<script>
+<script defer>
     (async()=>{
   const host = window.location.host;
   const proto = window.location.protocol;
@@ -126,13 +386,12 @@
     const parser = new DOMParser();
     const parsing = parser.parseFromString(str, 'text/html');
     
-    return parsing.querySelector('.product-card')
+    return parsing.querySelectorAll('.product-card')
   };
   const requestJob = async(cat) => {
     const form = new FormData();
     form.append('kategori', cat);
-
-    const getProduct = await fetch(`${proto}//${host}${path}display.php`,{
+    const getProduct = await fetch(`${proto}//${host}/display.php`,{
       "method": "POST",
       "body": cat == null || cat == undefined ? '' : form
     });
@@ -147,12 +406,19 @@
       el.remove();
     });
   }
-//   document.querySelector('.product-grid').appendChild(await toHtml())
+  const addItem = async(el)=>{
+    const stepGetHtml = await requestJob(getCat(el));
+    await resetProduct();
+    for(const i of await toHtml(stepGetHtml)){
+        document.querySelector('.product-grid').appendChild(i);
+    }
+  }
+  
+  await addItem(document.querySelector('.language-grid > [data-kategori="makanan"]'));
+
   for(const i of document.querySelectorAll('.language-grid > div')){
-    i.onclick = async()=>{
-      const stepGetHtml = await requestJob(getCat(i));
-      await resetProduct();
-      document.querySelector('.product-grid').appendChild(await toHtml(await stepGetHtml));
+    i.onclick = async() =>{
+        await addItem(i);
     }
   }
 })()
