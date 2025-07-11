@@ -17,6 +17,7 @@ if (isset($_GET['hihiduar'])) {
             //Function call
             http_response_code(200);
             echo 1;
+            header('Location: ' . 'http://' . $_SERVER['HTTP_HOST'] . '/display.php');
         } else {
             http_response_code(404);
             echo 0;

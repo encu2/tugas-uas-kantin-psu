@@ -28,21 +28,32 @@
         $gambar = $_FILES['gambar']['name'];
         $img_path = '/'. $upload_dir . $gambar;
 
+        $queryGambar = "SELECT gambar FROM produk WHERE id='$id'";
+        $sqlGambar = $mysqli -> query ($queryGambar);
+        $pathGambar = $sqlGambar -> fetch_array(MYSQLI_ASSOC);
+
+        $uploadGambar = $pathGambar['gambar'];
+
+        
+        if(!$sqlGambar){
+            echo 'gambar kosong, mohon isi';
+        }
 
         if (strlen($gambar) > 0){
             //upload
             if (is_uploaded_file($_FILES['gambar']['tmp_name'])) {
                 move_uploaded_file ($_FILES['gambar']['tmp_name'], $upload_dir . $gambar);
+                $uploadGambar = $img_path;
             }
-            $query = "UPDATE produk SET nama_produk='$nama_produk', stok='$stok', kategori='$kategori', harga='$harga', gambar='$img_path' WHERE id='$id'";
-            $sql = $mysqli -> query($query);
+        }
+        $query = "UPDATE produk SET nama_produk='$nama_produk', stok='$stok', kategori='$kategori', gambar='$uploadGambar', harga='$harga' WHERE id='$id'";
+        $sql = $mysqli -> query($query);
 
-            if ($sql) {
-                // Function call
-                echo "Berhasil Di Update";
-            } else {
-                echo "Gagal Di Update";
-            }
+        if ($sql) {
+            // Function call
+            echo "<div id='respons'>Berhasil Di Update</div>";
+        } else {
+            echo "<div id='respons' class='gagal'>Gagal Di Update</div>";
         }
     }else if(empty($_POST['update'])){
         $query = "SELECT id, nama_produk, stok, kategori, harga, gambar FROM produk WHERE id='$id'";
@@ -54,73 +65,294 @@
         $kategori = stripslashes ($hasil['kategori']);
         $harga = stripslashes ($hasil['harga']);
         $gambar = stripslashes ($hasil['gambar']);
-        $img_path = '/'. $upload_dir . $gambar;
+        $img_path = $gambar;
     }else{
         die ("OFF");
     }
 ?>
+<style>
+    /* Mengatur font Inter secara global */
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background-color: #f3f4f6; /* Latar belakang abu-abu terang */
+        padding: 1rem; /* Padding default untuk body */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        box-sizing: border-box; /* Pastikan padding tidak menambah lebar body */
+    }
 
+    /* Responsif padding untuk body */
+    @media (min-width: 640px) { /* breakpoint 'sm' */
+        body {
+            padding: 1.5rem;
+        }
+    }
+    @media (min-width: 1024px) { /* breakpoint 'lg' */
+        body {
+            padding: 2rem;
+        }
+    }
+
+    /* Gaya untuk pesan respons/notifikasi */
+    #respons {
+        background-color: #d1fae5; /* Warna hijau terang */
+        color: #065f46; /* Warna teks hijau gelap */
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
+        max-width: 1024px;
+        box-sizing: border-box;
+    }
+
+    /* Gaya untuk container utama form */
+    #content {
+        max-width: 1024px; /* Lebar maksimum container */
+        width: 100%;
+        background-color: #ffffff; /* Latar belakang putih */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Bayangan */
+        border-radius: 0.5rem; /* Sudut membulat */
+        padding: 1.5rem; /* Padding default */
+        box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    }
+
+    /* Responsif padding untuk content */
+    @media (min-width: 640px) { /* breakpoint 'sm' */
+        #content {
+            padding: 2rem;
+        }
+    }
+
+    /* Gaya untuk judul form */
+    h2 {
+        font-size: 1.875rem; /* Ukuran font besar */
+        font-weight: 700; /* Tebal */
+        color: #1f2937; /* Warna teks gelap */
+        margin-bottom: 1.5rem; /* Margin bawah */
+        text-align: center;
+    }
+
+    /* Gaya dasar untuk tabel form */
+    form table {
+        width: 100%;
+        border-collapse: collapse; /* Menghilangkan spasi antar sel */
+    }
+
+    /* Gaya untuk setiap sel data (td) */
+    form table td {
+        padding: 8px; /* Menggantikan cellpadding="8" */
+        vertical-align: top; /* Rata atas untuk label dan input */
+        color: #374151; /* Warna teks default */
+    }
+
+    /* Gaya khusus untuk sel label (kolom pertama) */
+    form table td:first-child {
+        width: 150px; /* Lebar tetap untuk label */
+        font-weight: 500;
+    }
+
+    /* Gaya untuk input teks, angka, dan select */
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: calc(100% - 1rem); /* Mengisi lebar sisa, dikurangi margin/padding */
+        padding: 0.75rem; /* Padding input */
+        border: 1px solid #d1d5db; /* Warna border */
+        border-radius: 0.375rem; /* Sudut membulat */
+        font-size: 1rem; /* Ukuran font input */
+        color: #1f2937;
+        outline: none; /* Hapus outline default */
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        box-sizing: border-box; /* Pastikan padding tidak menambah lebar input */
+    }
+
+    /* Gaya saat input fokus */
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+        border-color: #3b82f6; /* Warna border saat fokus */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Bayangan saat fokus */
+    }
+
+    /* Gaya untuk input file */
+    input[type="file"] {
+        width: calc(100% - 1rem); /* Mengisi lebar sisa */
+        padding: 0.5rem; /* Padding lebih sedikit untuk input file */
+        background-color: #f9fafb;
+        cursor: pointer;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        box-sizing: border-box;
+    }
+
+    /* Gaya untuk container pratinjau gambar */
+    .image-preview-container {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #c1c1c1;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Pastikan gambar tidak keluar dari container */
+        margin-top: 1rem; /* Jarak dari input file */
+        background-color: #f9fafb;
+        margin-left: auto; /* Pusatkan container gambar jika colspan 2 */
+        margin-right: auto;
+    }
+
+    /* Gaya untuk gambar di dalam pratinjau */
+    .image-preview-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* Memastikan gambar pas di dalam container */
+        display: block; /* Menghilangkan spasi bawah gambar */
+    }
+
+    /* Gaya untuk tombol submit dan reset */
+    input[type="submit"],
+    input[type="reset"] {
+        display: inline-block;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        transition: all 0.15s ease-in-out;
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+        margin-right: 1rem; /* Jarak antar tombol */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #22c55e; /* Warna hijau */
+        color: #ffffff;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #16a34a; /* Warna hijau lebih gelap saat hover */
+    }
+
+    input[type="reset"] {
+        background-color: #6b7280; /* Warna abu-abu */
+        color: #ffffff;
+    }
+
+    input[type="reset"]:hover {
+        background-color: #4b5563; /* Warna abu-abu lebih gelap saat hover */
+    }
+
+    /* Responsif untuk kolom pada layar kecil */
+    @media (max-width: 639px) { /* Di bawah breakpoint 'sm' */
+        form table td:first-child {
+            width: 100%; /* Label mengambil lebar penuh */
+            display: block; /* Agar label berada di baris terpisah */
+            padding-bottom: 0.25rem; /* Sedikit padding bawah */
+        }
+        form table td:nth-child(2) {
+            display: block; /* Input juga di baris terpisah */
+            width: 100%;
+            padding-top: 0; /* Hapus padding atas jika label di atas */
+        }
+        /* Sesuaikan input agar mengambil lebar penuh di layar kecil */
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+        }
+        /* Tombol akan mengambil lebar penuh dan ditumpuk */
+        input[type="submit"],
+        input[type="reset"] {
+            width: calc(100% - 1rem); /* Kurangi padding untuk lebar penuh */
+            margin-right: 0;
+            margin-bottom: 0.75rem; /* Jarak antar tombol di layar kecil */
+        }
+        form table tr:last-child td {
+            padding-top: 1rem; /* Tambah padding atas untuk baris tombol */
+            text-align: center; /* Pusatkan tombol */
+        }
+        .image-preview-container {
+            width: 100%; /* Lebar penuh untuk pratinjau gambar */
+            height: 200px; /* Tinggi disesuaikan */
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    .gagal{
+        background-color: #ff4747;
+    }
+</style>
 <div id="content">
-    <h2>Form Input produk</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="update" value="updateLah">
-        <table cellpadding="8">
-            <tr>
-                <td>ID</td>
-                <td>: <input type="text" name="id" maxlength="128" value="<?=$id?>" readonly="" required></td>
-            </tr>
-            <tr>
-                <td>Nama Produk</td>
-                <td>: <input type="text" name="nama_produk" maxlength="256" value="<?=$nama_produk?>" required></td>
-            </tr>
-            <tr>
-                <td>Stok</td>
-                <td>: <input type="number" name="stok" min="0" value="<?=$stok?>" required></td>
-            </tr>
-            <tr>
-                <td>Kategori</td>
-                <td>: 
-                    <select name="kategori" id="kategori-produk" required>
-                        <?php
-                        if($kategori === 'snack'){?>
-                            <option value="snack" selected>makanan</option>
-                            <option value="minuman">minuman</option>
-                            <option value="es-cream">es cream</option>
-                        <?php }else if($kategori === 'minuman'){?>
-                            <option value="snack">makanan</option>
-                            <option value="minuman" selected>minuman</option>
-                            <option value="es-cream">es cream</option>
-                        <?php }else if($kategori === 'es-cream'){?>
-                            <option value="snack">makanan</option>
-                            <option value="minuman">minuman</option>
-                            <option value="es-cream" selected>es cream</option>
-                        <?php }?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Harga</td>
-                <td>: <input type="text" name="harga" min="0" value="<?=$harga?>" required></td>
-            </tr>
-            <tr>
-                <td>Gambar</td>
-                <td>: <input id="inputGambar" type="file" name="gambar" accept="image/*"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div style="width: 300px;height: 300px;border: 1px solid #c1c1c1;border-radius: 10px;text-align: center;">
-                        <img id="liatGambar" src="<?=$img_path?>" style="max-width: 100%;object-fit: contain;max-height: 100%;">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="submit" value="submit">
-                    <input type="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
+    <h2>Form Update produk</h2>
+    <div class="table-container">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="update" value="updateLah">
+            <table cellpadding="8">
+                <tr>
+                    <td>ID</td>
+                    <td>: <input type="text" name="id" maxlength="128" value="<?=$id?>" readonly="" required></td>
+                </tr>
+                <tr>
+                    <td>Nama Produk</td>
+                    <td>: <input type="text" name="nama_produk" maxlength="256" value="<?=$nama_produk?>" required></td>
+                </tr>
+                <tr>
+                    <td>Stok</td>
+                    <td>: <input type="number" name="stok" min="0" value="<?=$stok?>" required></td>
+                </tr>
+                <tr>
+                    <td>Kategori</td>
+                    <td>: 
+                        <select name="kategori" id="kategori-produk" required>
+                            <?php
+                            if($kategori === 'snack'){?>
+                                <option value="snack" selected>makanan</option>
+                                <option value="minuman">minuman</option>
+                                <option value="es-cream">es cream</option>
+                            <?php }else if($kategori === 'minuman'){?>
+                                <option value="snack">makanan</option>
+                                <option value="minuman" selected>minuman</option>
+                                <option value="es-cream">es cream</option>
+                            <?php }else if($kategori === 'es-cream'){?>
+                                <option value="snack">makanan</option>
+                                <option value="minuman">minuman</option>
+                                <option value="es-cream" selected>es cream</option>
+                            <?php }?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Harga</td>
+                    <td>: <input type="text" name="harga" min="0" value="<?=$harga?>" required></td>
+                </tr>
+                <tr>
+                    <td>Gambar</td>
+                    <td>: <input id="inputGambar" type="file" name="gambar" accept="image/*"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div style="width: 300px;height: 300px;border: 1px solid #c1c1c1;border-radius: 10px;text-align: center;">
+                            <img id="liatGambar" src="<?=$uploadGambar?>" style="max-width: 100%;object-fit: contain;max-height: 100%;">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="submit" value="submit" style="margin-bottom: 20px;">
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 <script>
     inputGambar.oninput = async(ev) => {
