@@ -4,6 +4,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  scroll-behavior: smooth;
+}
 .mid{
   text-align: center;
 }
@@ -94,7 +97,6 @@ h2 {
   justify-content: space-between;
   padding: 3rem 2rem;
   background-color: #ffffff;
-  margin-top: 90px;
   background-image: url('/gambar/assets/imgHero.png');
   min-height: 80dvh;
   background-size: cover;

@@ -14,33 +14,33 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="#">Learn</a>
+                    <a href="#psu">PSU</a>
                 </li>
                 <li>
-                    <a href="#">Discover</a>
+                    <a href="#psukantin">Kantin</a>
                 </li>
                 <li>
-                    <a href="#">Contribute</a>
+                    <a href="#daftarmenu">Menu</a>
                 </li>
                 <li>
-                    <a href="#">More</a>
+                    <a href="#formpesan" style="color:red;">Pesan Langsung</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main class="hero">
+    <main class="hero" id="psu">
         <div class="hero-content">
             <h1>Universitas Panca Sakti Bekasi!</h1>
             <p>Selamat datang di Universitas Panca Sakti Bekasi! Tempat kuliah yang nggak cuma ngajarin teori, tapi juga siap bantu kamu tumbuh jadi pribadi yang keren, cerdas, dan siap bersaing
             </p>
             <div class="hero-buttons">
-                <button class="btn-primary">Menu kantin</button>
+                <a href="#daftarmenu"><button class="btn-primary">Menu kantin</button></a>
             </div>
         </div>
         <div class="hero-image">
         </div>
     </main>
-    <section class="large-room-detail">
+    <section class="large-room-detail" id="psukantin">
         <div class="large-room-content">
             <div class="large-room-image">
                 <img alt="Large Room Detail" src="/gambar/assets/gambarKantin.png">
@@ -54,9 +54,9 @@ Lebih dari sekadar tempat makan, kantin ini adalah ruang berkumpulnya ide, tawa,
             </div>
         </div>
     </section>
-    <header class="pilihMenu">
+    <header class="pilihMenu" id="daftarmenu">
         <h2 class="font mid">MACAM-MACAM MENU YANG ADA DISNI</h2>
-        <p class="font mid">Kami memiliki pilihan solusi ruang meeting interaktif yang disesuaikan dengan kebutuhan ruangan meeting Anda.</p>
+        <p class="font mid">Kami memiliki pilihan berbagai macam makanan, minuman, dan es cream yang dapat dipilih dibawah ini.</p>
     </header>
     <section class="language-grid">
         <div class="language-card" data-kategori="makanan">
@@ -272,7 +272,7 @@ Lebih dari sekadar tempat makan, kantin ini adalah ruang berkumpulnya ide, tawa,
     font-weight: 500;
     background-color: #FBCD17;
     padding: 13px 17px;
-    width: min(50%, 219px);
+    width: 219px;
     border-radius: 5px;
     cursor: pointer;
     &:before {
@@ -340,7 +340,7 @@ Lebih dari sekadar tempat makan, kantin ini adalah ruang berkumpulnya ide, tawa,
     width: max-content;
   }
 /*     Static Template - General All Page Template end */
-}</style><div class="row formUser"><div class="boxed dynTxt"><div class="formTitle">Request Pesanan</div><div class="formTxt">Terhubung dengan kami untuk mendapatkan penawaran terbaik dari solusi kami.</div><div id="formSec" class="spaceAfter"><form class="dynTxt"><div class="user">
+}</style><div class="row formUser" id="formpesan"><div class="boxed dynTxt"><div class="formTitle">Request Pesanan</div><div class="formTxt">Pesan terlebih dahulu lalu ambil di kantin PSU, cara mudah belanja di kantin Universitas Panca Sakti</div><div id="formSec" class="spaceAfter"><form class="dynTxt"><div class="user">
 <label for="nama">Nama</label>
 <input id="nama" type="text" placeholder="Isikan nama lengkap Anda" data-gtm-form-interact-field-id="0"></div><div class="user">
 <label for="prodi">Prodi</label>
@@ -421,6 +421,10 @@ Lebih dari sekadar tempat makan, kantin ini adalah ruang berkumpulnya ide, tawa,
         await addItem(i);
     }
   }
+  // https://api.whatsapp.com/send/?phone=6281211112948&text=Hi+admin
+  send.onclick = async()=> {
+    window.open(`https://api.whatsapp.com/send/?phone=6281389655448&text=Hi+admin+saya+atas+nama+*${nama.value}*+prodi+*${prodi.value}*+memesan+*${pesanan.value}*`,)
+  };
 })()
 </script>
 </body>
